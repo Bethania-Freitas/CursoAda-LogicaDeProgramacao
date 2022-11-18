@@ -1,0 +1,8 @@
+INDEX VERSION 1.131+C:\Users\User\Desktop\Projetos\Java\Curso Ada - Logica de programação\.metadata\.plugins\org.eclipse.jdt.core
+2740675604.index
+4123552910.index
+1245233441.index
+3868287681.index
+978466222.index
+1865797976.index
+3562820738.index
