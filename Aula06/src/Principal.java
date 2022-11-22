@@ -18,20 +18,6 @@ public class Principal {
 				imprimirNotas();
 			}
 		} while (opcao != 0) ;
-			
-			
-		
-		
-//		for (int i = 0; i < 2; i ++) {
-//			Aluno a = turma[i]; 
-//			System.out.println(a.matricula);
-//			System.out.println(a.nota1);
-//			System.out.println(a.nota2);
-//			System.out.println(a.nota3);
-//			System.out.println(a.nota4);
-//		}
-		
-		
 	}
 	
 	static void imprimirNotas() {
@@ -41,7 +27,8 @@ public class Principal {
 			for (float nota : aluno.notas) {
 				System.out.println(nota);
 			}
-			System.out.println(calculaMedia(aluno));
+			float media = calculaMedia(aluno);
+			System.out.println(media);
 		}		
 	}
 
@@ -76,3 +63,12 @@ public class Principal {
 //a2.notas[2] = 7;
 //a2.notas[3] = 8;
 //turma[1] = a2;
+
+//for (int i = 0; i < 2; i ++) {
+//Aluno a = turma[i]; 
+//System.out.println(a.matricula);
+//System.out.println(a.nota1);
+//System.out.println(a.nota2);
+//System.out.println(a.nota3);
+//System.out.println(a.nota4);
+//}	
