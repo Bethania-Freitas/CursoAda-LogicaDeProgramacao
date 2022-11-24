@@ -2,4 +2,6 @@ INDEX VERSION 1.131+C:\Users\User\Desktop\Projetos\Java\CursoAda-LogicaDeProgram
 1027600823.index
 2755043341.index
 1865797976.index
+10053773.index
 4123552910.index
+3297671370.index
