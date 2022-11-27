@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Principal {
@@ -8,6 +10,8 @@ public class Principal {
 	static int quantPost = 0;
 	static int quantUsuarios = 0;
 	static int login = 0;
+	static String LocalDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	static String LocalHour = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
 
 	public static void main(String[] args) {
 		System.out.println("       __         .' '.");
@@ -48,38 +52,38 @@ public class Principal {
 			}
 		} catch (java.util.InputMismatchException e) {
 			System.out.println("--- Ta pichuruco?? Da onde tirou isso? ---");
-			erro();			
+			erro();
 		} catch (Exception e) {
 			erro();
 		}
 	}
 
 	private static void login() {
-		listaUsuarios();
 		if (quantUsuarios == 0) {
 			System.out.println("Você nem fez seu cadastro ainda, criatura!");
 			erro();
 			System.out.println();
 			menuInicial();
-		}
-		System.out.println("---- LOGIN -----");
-		System.out.println("Login: ");
-		String login = sc.next().toUpperCase();
-		System.out.println("Senha: ");
-		String senha = sc.next();		
-		for (int i = 0; i < quantUsuarios; i++) {
-			if (perfis[i].login.equals(login) && perfis[i].senha.equals(senha)) {
-				System.out.println();
-				System.out.println("Ola, " + perfis[i].nome + " !");
-				System.out.println("╭════════════════════🐝═╮");
-				System.out.println("  Bem vindo/a rede BEE!");
-				System.out.println("╰═🐝════════════════════╯");
-				menuUsuario();
-				break;
-			} else {
-				System.out.println("Prestenção! Login ou senha errados!!.");
-				erro();
-				menuInicial();
+		} else {
+			System.out.println("---- LOGIN -----");
+			System.out.println("Login: ");
+			String login = sc.next().toUpperCase();
+			System.out.println("Senha: ");
+			String senha = sc.next();
+			for (int i = 0; i < quantUsuarios; i++) {
+				if (perfis[i].login.equals(login) && perfis[i].senha.equals(senha)) {
+					System.out.println();
+					System.out.println("Ola, " + perfis[i].nome + " !");
+					System.out.println("╭════════════════════🐝═╮");
+					System.out.println("  Bem vindo/a rede BEE!");
+					System.out.println("╰═🐝════════════════════╯");
+					menuUsuario();
+					break;
+				} else {
+					System.out.println("Prestenção! Login ou senha errados!!.");
+					erro();
+					menuInicial();
+				}
 			}
 		}
 	}
@@ -125,15 +129,13 @@ public class Principal {
 		Postagens a = new Postagens();
 		System.out.println();
 		System.out.println("----- POSTAR -----");
-		System.out.printf("Data: ");
-		a.data = sc.next();
-		System.out.printf("Hora: ");
-		a.hora = sc.next();
+		a.data = LocalDate;
+		a.hora = LocalHour;
 		System.out.printf("Mensagem: ");
 		sc.nextLine();
 		a.conteúdo = sc.nextLine();
-		while (a.data.isEmpty() | a.hora.isEmpty() | a.conteúdo.isEmpty()) {
-			System.out.println("Todos os campos precisam ser preenchidos");
+		while (a.conteúdo.isEmpty() | a.conteúdo.isBlank()) {
+			System.out.println("Ops..  a postagem parece estar vazia");
 			return;
 		}
 		System.out.println();
@@ -141,7 +143,7 @@ public class Principal {
 		System.out.println("[][][][][][] - 0%");
 		System.out.println("[][][]▐▌▐▌▐▌ - 50%");
 		System.out.println("▐▌▐▌▐▌▐▌▐▌▐▌ - 100%");
-		System.out.println("Publicação registrada com sucesso!!");		
+		System.out.println("Publicação registrada com sucesso!!");
 		post[quantPost] = a;
 		quantPost++;
 	}
@@ -162,7 +164,8 @@ public class Principal {
 		}
 		System.out.println("Digite sua senha: ");
 		a.senha = sc.next();
-		while (a.nome.isEmpty() | a.login.isEmpty() | a.senha.isEmpty()) {
+		while (a.nome.isEmpty() | a.login.isEmpty() | a.senha.isEmpty() | a.nome.isBlank() | a.login.isBlank()
+				| a.senha.isBlank()) {
 			System.out.println("Nome, login ou senha não foram registrados, tente novamente");
 			return;
 		}
@@ -182,7 +185,6 @@ public class Principal {
 		System.out.println("/ 　 づ");
 		System.out.println();
 		menuInicial();
-		
 	}
 
 	static void erro() {
@@ -204,15 +206,4 @@ public class Principal {
 		System.out.println("░░░░▐▌▀▄░░░░░░░░░░░░░░░░░▐▌░░");
 		System.out.println("░░░░░█░░▀░░░░░░░░░░░░░░░░▀░░░");
 	}
-	
-	static void listaUsuarios() {
-		for(int i = 0; i < quantUsuarios; i++) {
-			Usuarios perfil = perfis[i];
-			System.out.println(perfil.nome);
-			System.out.println(perfil.login);
-			System.out.println(perfil.senha);
-			System.out.println();
-		}
-	}
-	
 }
